@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ÁUDIOS (coloque os MP3s na pasta assets/) -->
+  <audio id="audioMenu" src="assets/musicamenu.mp3" loop preload="auto"></audio>
+  <audio id="audioInicio" src="assets/musicainicio.mp3" preload="auto"></audio>
+  <audio id="audioJogo" src="assets/musicajogo.mp3" loop preload="auto"></audio>
+  <audio id="audioAcerto" src="assets/musicaacerto.mp3" preload="auto"></audio>
+  <audio id="audioErro" src="assets/musicaerro.mp3" preload="auto"></audio>
+
+  <!-- MENU -->
+  <div id="menu" class="tela">
+    <img src="assets/backgroundmenu.jpg" class="bg" />
+    <img src="assets/logo.png" class="logo floating" />
+    <img src="assets/começar.png" id="btnComecar" class="botaoMenu" />
+  </div>
+
+  <!-- JOGO -->
+  <div id="jogo" class="tela escondido">
+    <img src="assets/background.jpg" class="bg" />
+
+    <!-- SCORE -->
+    <div id="scoreContainer" class="score-top-left">
+      <img src="assets/moeda.png" id="moeda" />
+      <span id="score">0</span>
+    </div>
+
+    <!-- CAIXA PERGUNTA -->
+    <div id="caixaPergunta" class="caixa-custom" aria-live="polite">
+      <img src="assets/caixapergunta.png" class="caixaImg" />
+      <div id="textoPergunta" class="textoPergunta">Carregando...</div>
+
+      <!-- ALTERNATIVAS -->
+      <div id="alternativas" class="answers-inside" role="list">
+        <button class="alt" id="alt1" role="listitem" data-index="0"><span class="alt-text"></span></button>
+        <button class="alt" id="alt2" role="listitem" data-index="1"><span class="alt-text"></span></button>
+        <button class="alt" id="alt3" role="listitem" data-index="2"><span class="alt-text"></span></button>
+        <button class="alt" id="alt4" role="listitem" data-index="3"><span class="alt-text"></span></button>
+      </div>
+    </div>
+
+    <!-- TIMER -->
+    <div id="timerContainer" class="timer-top-right" aria-hidden="false">
+      <svg id="timerSvg" viewBox="0 0 100 100" class="timer-svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#6a5cff"/>
+            <stop offset="100%" stop-color="#00e0c6"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" class="timer-bg"/>
+        <circle cx="50" cy="50" r="45" class="timer-fg" stroke="url(#g1)" stroke-linecap="round" />
+      </svg>
+      <div id="timerText" class="timer-text">60</div>
+    </div>
+
+    <!-- PROGRESSO -->
+    <div id="footerBar" class="footer-bar">
+      <div id="progressText">Pergunta <span id="curIndex">1</span>/<span id="totalQ">1</span></div>
+    </div>
+  </div>
+
+  <!-- GAME OVER -->
+  <div id="overlay" class="overlay escondido" aria-hidden="true">
+    <div class="popup scale-in" role="dialog" aria-modal="true">
+      <img src="assets/backgroundgameover.jpg" class="popup-bg" />
+      <div class="popup-content">
+        <p id="finalMsg" class="finalMsg">Você perdeu!</p>
+
+        <div class="score-summary">
+          <div>Sua pontuação: <strong id="finalScore">0</strong></div>
+          <div>Maior pontuação: <strong id="bestScore">0</strong></div>
+        </div>
+
+        <div class="popup-actions">
+          <img src="assets/reiniciar.png" id="btnReiniciar" class="botaoGameOver" />
+          <img src="assets/sair.png" id="btnSair" class="botaoGameOver" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="perguntas.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
